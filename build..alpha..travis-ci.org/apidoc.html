@@ -677,7 +677,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.neo-async.nextTick">
             function <span class="apidocSignatureSpan">neo-async.</span>nextTick
-            <span class="apidocSignatureSpan">(callback)</span>
+            <span class="apidocSignatureSpan">()</span>
             </a>
 
         </li>
@@ -920,7 +920,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.neo-async.setImmediate">
             function <span class="apidocSignatureSpan">neo-async.</span>setImmediate
-            <span class="apidocSignatureSpan">(callback, arg1, arg2, arg3)</span>
+            <span class="apidocSignatureSpan">()</span>
             </a>
 
         </li>
@@ -1725,7 +1725,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.neo-async.async.nextTick">
             function <span class="apidocSignatureSpan">neo-async.async.</span>nextTick
-            <span class="apidocSignatureSpan">(callback)</span>
+            <span class="apidocSignatureSpan">()</span>
             </a>
 
         </li>
@@ -1968,7 +1968,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.neo-async.async.setImmediate">
             function <span class="apidocSignatureSpan">neo-async.async.</span>setImmediate
-            <span class="apidocSignatureSpan">(callback, arg1, arg2, arg3)</span>
+            <span class="apidocSignatureSpan">()</span>
             </a>
 
         </li>
@@ -2767,7 +2767,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.neo-async.default.nextTick">
             function <span class="apidocSignatureSpan">neo-async.default.</span>nextTick
-            <span class="apidocSignatureSpan">(callback)</span>
+            <span class="apidocSignatureSpan">()</span>
             </a>
 
         </li>
@@ -3010,7 +3010,7 @@
 
             <a class="apidocElementLiA" href="#apidoc.element.neo-async.default.setImmediate">
             function <span class="apidocSignatureSpan">neo-async.default.</span>setImmediate
-            <span class="apidocSignatureSpan">(callback, arg1, arg2, arg3)</span>
+            <span class="apidocSignatureSpan">()</span>
             </a>
 
         </li>
@@ -7654,30 +7654,12 @@ function createImmediate(safeMode) {
     <h2>
         <a href="#apidoc.element.neo-async.nextTick" id="apidoc.element.neo-async.nextTick">
         function <span class="apidocSignatureSpan">neo-async.</span>nextTick
-        <span class="apidocSignatureSpan">(callback)</span>
+        <span class="apidocSignatureSpan">()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">function nextTick(callback) {
-  if (typeof callback !== &#x27;function&#x27;)
-    throw new TypeError(&#x27;callback is not a function&#x27;);
-  // on the way out, don&#x27;t bother. it won&#x27;t get fired anyway.
-  if (process._exiting)
+    <li>description and source-code<pre class="apidocCodePre">nextTick = function () {
     return;
-
-  var args;
-  if (arguments.length &#x3e; 1) {
-    args = new Array(arguments.length - 1);
-    for (var i = 1; i &#x3c; arguments.length; i++)
-      args[i - 1] = arguments[i];
-  }
-
-  nextTickQueue.push({
-    callback,
-    domain: process.domain || null,
-    args
-  });
-  tickInfo[kLength]++;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9702,35 +9684,15 @@ function createImmediate(safeMode) {
     <h2>
         <a href="#apidoc.element.neo-async.setImmediate" id="apidoc.element.neo-async.setImmediate">
         function <span class="apidocSignatureSpan">neo-async.</span>setImmediate
-        <span class="apidocSignatureSpan">(callback, arg1, arg2, arg3)</span>
+        <span class="apidocSignatureSpan">()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">setImmediate = function (callback, arg1, arg2, arg3) {
-  if (typeof callback !== &#x27;function&#x27;) {
-    throw new TypeError(&#x27;&#x22;callback&#x22; argument must be a function&#x27;);
-  }
-
-  var i, args;
-
-  switch (arguments.length) {
-    // fast cases
-    case 1:
-      break;
-    case 2:
-      args = [arg1];
-      break;
-    case 3:
-      args = [arg1, arg2];
-      break;
-    default:
-      args = [arg1, arg2, arg3];
-      for (i = 4; i &#x3c; arguments.length; i++)
-        // extend array dynamically, makes .apply run much faster in v6.0.0
-        args[i - 1] = arguments[i];
-      break;
-  }
-  return createImmediate(args, callback);
+    <li>description and source-code<pre class="apidocCodePre">setImmediate = function () {
+<span class="apidocCodeCommentSpan">/*
+ * this function will do nothing
+ */
+</span>    return;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -15427,30 +15389,12 @@ function createImmediate(safeMode) {
     <h2>
         <a href="#apidoc.element.neo-async.async.nextTick" id="apidoc.element.neo-async.async.nextTick">
         function <span class="apidocSignatureSpan">neo-async.async.</span>nextTick
-        <span class="apidocSignatureSpan">(callback)</span>
+        <span class="apidocSignatureSpan">()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">function nextTick(callback) {
-  if (typeof callback !== &#x27;function&#x27;)
-    throw new TypeError(&#x27;callback is not a function&#x27;);
-  // on the way out, don&#x27;t bother. it won&#x27;t get fired anyway.
-  if (process._exiting)
+    <li>description and source-code<pre class="apidocCodePre">nextTick = function () {
     return;
-
-  var args;
-  if (arguments.length &#x3e; 1) {
-    args = new Array(arguments.length - 1);
-    for (var i = 1; i &#x3c; arguments.length; i++)
-      args[i - 1] = arguments[i];
-  }
-
-  nextTickQueue.push({
-    callback,
-    domain: process.domain || null,
-    args
-  });
-  tickInfo[kLength]++;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -17475,35 +17419,15 @@ function createImmediate(safeMode) {
     <h2>
         <a href="#apidoc.element.neo-async.async.setImmediate" id="apidoc.element.neo-async.async.setImmediate">
         function <span class="apidocSignatureSpan">neo-async.async.</span>setImmediate
-        <span class="apidocSignatureSpan">(callback, arg1, arg2, arg3)</span>
+        <span class="apidocSignatureSpan">()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">setImmediate = function (callback, arg1, arg2, arg3) {
-  if (typeof callback !== &#x27;function&#x27;) {
-    throw new TypeError(&#x27;&#x22;callback&#x22; argument must be a function&#x27;);
-  }
-
-  var i, args;
-
-  switch (arguments.length) {
-    // fast cases
-    case 1:
-      break;
-    case 2:
-      args = [arg1];
-      break;
-    case 3:
-      args = [arg1, arg2];
-      break;
-    default:
-      args = [arg1, arg2, arg3];
-      for (i = 4; i &#x3c; arguments.length; i++)
-        // extend array dynamically, makes .apply run much faster in v6.0.0
-        args[i - 1] = arguments[i];
-      break;
-  }
-  return createImmediate(args, callback);
+    <li>description and source-code<pre class="apidocCodePre">setImmediate = function () {
+<span class="apidocCodeCommentSpan">/*
+ * this function will do nothing
+ */
+</span>    return;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -23198,30 +23122,12 @@ function createImmediate(safeMode) {
     <h2>
         <a href="#apidoc.element.neo-async.default.nextTick" id="apidoc.element.neo-async.default.nextTick">
         function <span class="apidocSignatureSpan">neo-async.default.</span>nextTick
-        <span class="apidocSignatureSpan">(callback)</span>
+        <span class="apidocSignatureSpan">()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">function nextTick(callback) {
-  if (typeof callback !== &#x27;function&#x27;)
-    throw new TypeError(&#x27;callback is not a function&#x27;);
-  // on the way out, don&#x27;t bother. it won&#x27;t get fired anyway.
-  if (process._exiting)
+    <li>description and source-code<pre class="apidocCodePre">nextTick = function () {
     return;
-
-  var args;
-  if (arguments.length &#x3e; 1) {
-    args = new Array(arguments.length - 1);
-    for (var i = 1; i &#x3c; arguments.length; i++)
-      args[i - 1] = arguments[i];
-  }
-
-  nextTickQueue.push({
-    callback,
-    domain: process.domain || null,
-    args
-  });
-  tickInfo[kLength]++;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -25246,35 +25152,15 @@ function createImmediate(safeMode) {
     <h2>
         <a href="#apidoc.element.neo-async.default.setImmediate" id="apidoc.element.neo-async.default.setImmediate">
         function <span class="apidocSignatureSpan">neo-async.default.</span>setImmediate
-        <span class="apidocSignatureSpan">(callback, arg1, arg2, arg3)</span>
+        <span class="apidocSignatureSpan">()</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">setImmediate = function (callback, arg1, arg2, arg3) {
-  if (typeof callback !== &#x27;function&#x27;) {
-    throw new TypeError(&#x27;&#x22;callback&#x22; argument must be a function&#x27;);
-  }
-
-  var i, args;
-
-  switch (arguments.length) {
-    // fast cases
-    case 1:
-      break;
-    case 2:
-      args = [arg1];
-      break;
-    case 3:
-      args = [arg1, arg2];
-      break;
-    default:
-      args = [arg1, arg2, arg3];
-      for (i = 4; i &#x3c; arguments.length; i++)
-        // extend array dynamically, makes .apply run much faster in v6.0.0
-        args[i - 1] = arguments[i];
-      break;
-  }
-  return createImmediate(args, callback);
+    <li>description and source-code<pre class="apidocCodePre">setImmediate = function () {
+<span class="apidocCodeCommentSpan">/*
+ * this function will do nothing
+ */
+</span>    return;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
