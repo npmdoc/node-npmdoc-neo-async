@@ -1,6 +1,6 @@
 # npmdoc-neo-async
 
-#### api documentation for  [neo-async (v2.1.0)](https://github.com/suguru03/neo-async)  [![npm package](https://img.shields.io/npm/v/npmdoc-neo-async.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-neo-async) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-neo-async.svg)](https://travis-ci.org/npmdoc/node-npmdoc-neo-async)
+#### basic api documentation for  [neo-async (v2.1.0)](https://github.com/suguru03/neo-async)  [![npm package](https://img.shields.io/npm/v/npmdoc-neo-async.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-neo-async) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-neo-async.svg)](https://travis-ci.org/npmdoc/node-npmdoc-neo-async)
 
 #### Neo-Async is thought to be used as a drop-in replacement for Async, it almost fully covers its functionality and runs faster
 
@@ -90,7 +90,8 @@
         "cov:100": "grep Lines | perl -nle 'my ($l, $c, $p, @d) = split(/[\\s%]+/); exit(($p == 100) == 0)'",
         "test": "istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- -R spec ./test --recursive"
     },
-    "version": "2.1.0"
+    "version": "2.1.0",
+    "bin": {}
 }
 ```
 
